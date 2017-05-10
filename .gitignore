@@ -1,0 +1,14 @@
+
+# descriptions
+*.md
+
+# unit tests
+*.spec.*
+*_test.*
+*tests.*
+test_*.*
+
+# project files
+*.*proj
+*.yaml
+project.*
