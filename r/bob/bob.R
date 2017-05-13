@@ -2,8 +2,8 @@ library(stringi)
 
 bob <- function(input) {
   
-  # remove all white-space from start, end and multiple in between
-  input <- stri_replace_all(input, regex = "^\\s|\\s$|\\s+", "")
+  # remove all white-space from both sides and multiple in between
+  input <- stri_replace_all(input, regex = "^\\s$|\\s+", "")
   
   dplyr::case_when(
     
