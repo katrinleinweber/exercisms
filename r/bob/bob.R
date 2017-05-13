@@ -2,14 +2,15 @@ library(stringi)
 
 bob <- function(input) {
   
-  # remove white-space
-  input <- stri_replace_all_regex(input, "\\s+", "")
+  # remove all white-space from start, end and multiple in between
+  input <- stri_replace_all(input, regex = "^\\s|\\s$|\\s+", "")
   
   dplyr::case_when(
     
-    # yelling
-    stri_count_regex(input, "[[:upper:]]") > 
-      stri_count_regex(input, "[[:lower:]]") ~ 
+    # yelling := more upper- than lowercase OR exclamation
+    stri_count_regex(input, "[A-Z]") > 
+      stri_count_regex(input, "[a-z]") |
+      stri_detect_regex(input, "[A-Z]\\!") ~
       paste("Whoa, chill out!"),
     
     # question
@@ -17,7 +18,7 @@ bob <- function(input) {
       paste("Sure."),
     
     # not saying anything
-    input == "" | 
+    input == "" | input == " " |
       stri_count_regex(input, "[[:punct:]]") > 
       stri_count_regex(input, "[[:alnum:]]") ~ 
       paste("Fine. Be that way!"),
