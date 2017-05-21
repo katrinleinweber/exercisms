@@ -3,7 +3,7 @@ a1 <- 1
 g8 <- 64
 
 square <- function(n) {
-  if (dplyr::between(n, a1, g8))
+  if (a1 <= n & n <= g8)
     2 ^ (n - 1)
   else
     stop("That's not a proper chess board!")
