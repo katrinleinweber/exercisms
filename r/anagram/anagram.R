@@ -26,7 +26,8 @@ anagram <- function(subject, candidates) {
         anagram
       
       # discard anagrams that are not different from subject
-      if (identical(anagram, subject) | identical(tolower(anagram), tolower(subject)))
+      # not necessary to OR `identical(anagram, subject)` here
+      if (identical(tolower(anagram), tolower(subject)))  
           anagram <- c()
          
       # store true anagrams in buffer 
