@@ -1,13 +1,14 @@
 library(magrittr)
 library(stringi)
 
+options(encoding = "UTF-8")
+
 anagram <- function(subject, candidates) {
 
-  options(encoding = "UTF-8")
-  
   # buffer
   anagrams <- c()
   
+  # catch false positives 
   if (length(candidates) <= 1)
     return(anagrams)
   
