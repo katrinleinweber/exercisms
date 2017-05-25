@@ -14,7 +14,7 @@ anagram <- function(subject, candidates) {
   # prepare comparison
   candidates_lengths <- stri_length(candidates)
   
-  for (x in 1:range(length(candidates))) {
+  for (x in 1:length(candidates)) {
     
     if (candidates_lengths[x] == stri_length(subject)) {
       
