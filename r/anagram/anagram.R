@@ -13,10 +13,11 @@ anagram <- function(subject, candidates) {
   
   # prepare comparison
   candidates_lengths <- stri_length(candidates)
+  length_subject <- stri_length(subject)
   
   for (x in 1:length(candidates)) {
     
-    if (candidates_lengths[x] == stri_length(subject)) {
+    if (candidates_lengths[x] == length_subject) {
       
       candidates[x] %>%
         stri_extract_all_regex(pattern = paste0("[", tolower(subject), toupper(subject), "]")) %>%
@@ -29,7 +30,7 @@ anagram <- function(subject, candidates) {
           anagram <- c()
          
       # store true anagrams in buffer 
-      if (identical(stri_length(anagram), stri_length(subject)))
+      if (identical(stri_length(anagram), length_subject))
         anagrams <- append(anagrams, anagram)
     }
   }
