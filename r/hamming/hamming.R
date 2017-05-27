@@ -10,13 +10,14 @@ hamming <- function(strand1,strand2) {
   # omitting explicit stop("Different lengths!") doesn't cause last test to fail
 }
 
+split <- function(strand) {
+  strand %>% strsplit("") %>% unlist()
+}
+
 distance <- function(strand1, strand2) {
   
-    bases1 <- unlist(strsplit(strand1, ""))
-    bases2 <- unlist(strsplit(strand2, ""))
-
     # detect base mistmatches, adding them up
-    purrr::map2_lgl(bases1, bases2, stringi::stri_cmp_neq) %>%
+    purrr::map2_lgl(split(strand1), split(strand2), stringi::stri_cmp_neq) %>%
       sum() %>%
       return()
 }
