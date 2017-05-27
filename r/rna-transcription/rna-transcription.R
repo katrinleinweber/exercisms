@@ -4,14 +4,12 @@ to_rna <- function(dna) {
   if (stringi::stri_detect_regex(dna, "[^GATC]"))
     stop("That's not a valid nucleobase!")
   
-  # return complement 
+  # return complement
   transcribe <- function(base) {
-    dplyr::case_when(
-      base == "G" ~ "C",
-      base == "A" ~ "U",
-      base == "T" ~ "A",
-      base == "C" ~ "G"
-    )
+    dplyr::case_when(base == "G" ~ "C",
+                     base == "A" ~ "U",
+                     base == "T" ~ "A",
+                     base == "C" ~ "G")
   }
   
   # swap bases 1-by-1, then concatenate to sequence
