@@ -1,14 +1,19 @@
 space_age <- function(seconds, planet) {
   
-  # naive, if-else alternative with planets years multiplied with Earth's 
-  dplyr::case_when(
-    identical(planet, "mercury") ~ round(seconds / 7600544, 2),
-    identical(planet, "venus") ~ round(seconds / 19414149, 2),
-    identical(planet, "earth") ~ round(seconds / 31557600, 2),
-    identical(planet, "mars") ~ round(seconds / 59354033, 2),
-    identical(planet, "jupiter") ~ round(seconds / 374355659, 2),
-    identical(planet, "saturn") ~ round(seconds / 929292363, 2),
-    identical(planet, "uranus") ~ round(seconds / 2651370019, 2),
-    identical(planet, "neptune") ~ round(seconds / 5200418560, 2)
+  Earth_seconds_per_year <- 31557600
+  
+  # calculate factor on demand
+  conversion <- list(
+    mercury = Earth_seconds_per_year * 0.2408467,
+    venus = Earth_seconds_per_year * 0.61519726,
+    earth = Earth_seconds_per_year * 1,
+    mars = Earth_seconds_per_year * 1.8808158,
+    jupiter = Earth_seconds_per_year * 11.862615,
+    saturn = Earth_seconds_per_year * 29.447498,
+    uranus = Earth_seconds_per_year * 84.016846,
+    neptune = Earth_seconds_per_year * 164.79132
   )
+  
+  # divide given age by planet-specific factor
+  round(seconds / conversion[[planet]], 2)
 }
