@@ -13,14 +13,12 @@ word_count <- function(input) {
   
   # count each word in string by utilising word boundary reg-ex
   counts <- c()
-  for (w in words) {
+  count <- function(w) {
     string %>% 
       stri_count_regex(paste0(w, "\\b")) ->
-      count
-    
-    counts <- append(counts, count)
+      c
   }
-  # [ ] purrr::map?
+  counts <- purrr::map_int(words, count)
   
   # construct results list
   names(counts) <- words
