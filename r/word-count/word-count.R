@@ -1,3 +1,4 @@
+library(magrittr)
 library(stringi)
 
 word_count <- function(input) {

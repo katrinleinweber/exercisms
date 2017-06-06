@@ -1,3 +1,5 @@
+library(magrittr)
+
 to_rna <- function(dna) {
   
   # handle invalid sequences
