@@ -1,12 +1,9 @@
 library(dplyr)
-library(magrittr)
 
 rotate <- function(text, key) {
   
   # convert text to ASCII decimals
-  text %>%
-    utf8ToInt() ->
-    bytes
+  bytes <- utf8ToInt(text)
   
   # separately for upper- and lowercase alphabet:
   # 1. shift decimal range to 1
@@ -25,7 +22,6 @@ rotate <- function(text, key) {
   # [ ] purr::map or ::walk?
   
   # convert back to (cipher)text
-  bytes %>% 
-    intToUtf8()
+  intToUtf8(bytes)
   
 }
