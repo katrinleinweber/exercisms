@@ -17,10 +17,10 @@ scrabble_score <- function(input){
   # split input into letters
   # sum scores up
   input %>% 
-    toupper() %>% 
+    toupper %>% 
     strsplit("") %>% 
     purrr::map(.f = score) %>% 
-    unlist() %>% 
-    sum()
+    unlist %>% 
+    sum  # return() and empty parentheses can be omitted
   
 }
