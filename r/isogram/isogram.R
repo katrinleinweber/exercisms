@@ -2,9 +2,7 @@ library(magrittr)
 
 is_isogram <- function(word) {
   
-  word %>%
-    stringi::stri_extract_all_regex("\\w") %>%
-    unlist %>%
+    gsub(pattern = "\\W", replacement = "", x = word) %>%
     tolower ->
     letters
   
