@@ -1,14 +1,9 @@
-
-# descriptions
+# descriptions & specifications
 *.md
-
-# unit tests
-*.spec.*
-*_test.*
-*tests.*
 test_*.*
 
-# project files
-*.*proj
-*.yaml
-project.*
+# R(Studio) files
+*.Rproj
+.Rproj.user/
+.Rproj.user
+.Rhistory
