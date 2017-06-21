@@ -5,22 +5,20 @@ is_perfect <- function(n){
   # catch edge cases
   if (n <= 0)
     stop("Only natural number can be classified here!")
-  
   if (n == 1)
     return("deficient")
   
-  
-  aliquots <- c()
-  
   # find n's factors, incl. 1 but not n (aliquots)
-  for (i in seq(n - 1)) {
+  factor <- function(i)
     if (n %% i == 0)
-      aliquots <- append(aliquots, i)
-  }
-    
-  # calculate sum and classify n
-  sum <- as.numeric(sum(aliquots))
+      i
   
+  # calculate sum and classify n
+  purrr::map(seq(n - 1), factor) %>% 
+    unlist %>% 
+    sum ->
+    sum
+    
   dplyr::case_when(
     sum == n ~ "perfect",
     sum < n ~ "deficient",
