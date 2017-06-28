@@ -5,7 +5,7 @@ is_perfect <- function(n){
   # catch edge cases
   if (n <= 0)
     stop("Only natural number can be classified here!")
-  if (n == 1)
+  if (n <= 2)
     return("deficient")
   
   # find n's factors, incl. 1 but not n (aliquots)
@@ -14,7 +14,7 @@ is_perfect <- function(n){
       i
   
   # calculate sum and classify n
-  purrr::map(seq(n - 1), factor) %>% 
+  lapply(1:(n/2), factor) %>% 
     unlist %>% 
     sum ->
     sum
