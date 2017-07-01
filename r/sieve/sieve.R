@@ -1,7 +1,7 @@
 sieve <- function(limit) {
   
   # catch edge case
-  if (limit == 1)
+  if (limit <= 1)
     return()
   
   # list candidates
