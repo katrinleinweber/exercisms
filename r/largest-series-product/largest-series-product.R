@@ -7,7 +7,7 @@ largest_series_product <- function(digits, span) {
     stop("Span must not be longer then the digit string!")
   else if (digits == "" | span == 0)
     return(1)
-  else if (is.na(as.numeric(digits)))
+  else if (stringi::stri_detect_regex(digits, "[^0-9]"))
     stop("There are non-digits in the digit string!")
   
   # turn digit string into integer vector
