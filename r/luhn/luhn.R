@@ -8,14 +8,10 @@ is_valid <- function(input) {
     strsplit("") %>%
     unlist
   
-  # reject too small input
-  if (length(digits) <= 1)
+  # reject invalid input (too small or non-digit characters)
+  if (length(digits) <= 1
+      | TRUE %in% stringi::stri_detect_regex(digits, "\\D"))
     return(FALSE)
-  
-  # reject non-digit characters
-  if (TRUE %in% stringi::stri_detect_regex(digits, "\\D"))
-    return(FALSE)
-  # [ ] compound all checks
   
   # prepare for Luhn's algorithm
   stigid <- digits %>%
