@@ -20,7 +20,8 @@ largest_series_product <- function(digits, span) {
   steps <- length(list) - span + 1
   
   products <- c()
-  # walk along vector
+  
+  # slide window along vector
   for (s in 1:steps) {
     products <- c(products,
                   prod(list[s:(s + span - 1)]))
