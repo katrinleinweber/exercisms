@@ -1,6 +1,5 @@
 # descriptions & specifications
 *.md
-test_*.*
 
 # R(Studio) files
 *.Rproj
