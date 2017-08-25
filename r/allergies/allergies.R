@@ -1,22 +1,28 @@
 allergy <- function(num) {
   
   # convert score to binary
-  binary <- rawToChar(intToBits(num), multiple = TRUE)[1:8]
+  binary <- rawToChar(intToBits(num), multiple = TRUE)
   
-  # match places with 1
   # construct list
+  allergy_list <- c(
+    "eggs",          # 2
+    "peanuts",       # 4
+    "shellfish",     # 8
+    "strawberries",  # 16
+    "tomatoes",      # 32
+    "chocolate",     # 64
+    "pollen",        # 128
+    "cats"           # 256
+  )
   
   allergies <- character()
   
-  if (binary[1] != "") allergies <- append(allergies, "eggs")
-  if (binary[2] != "") allergies <- append(allergies, "peanuts")
-  if (binary[3] != "") allergies <- append(allergies, "shellfish")
-  if (binary[4] != "") allergies <- append(allergies, "strawberries")
-  if (binary[5] != "") allergies <- append(allergies, "tomatoes")
-  if (binary[6] != "") allergies <- append(allergies, "chocolate")
-  if (binary[7] != "") allergies <- append(allergies, "pollen")
-  if (binary[8] != "") allergies <- append(allergies, "cats")
-
+  # match places with 1
+  for (i in seq(length(allergy_list))) {
+    if (binary[i] != "")
+      allergies <- append(allergies, allergy_list[i])
+  }
+  
   return(allergies)
 }
 
