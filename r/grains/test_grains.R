@@ -47,3 +47,11 @@ test_that("returns the total number of square on the board", {
 
 
 print("All tests passed!")
+
+
+microbenchmark:::print.microbenchmark(
+  microbenchmark::microbenchmark(
+    square(64), 
+    total()
+  )
+)
