@@ -12,10 +12,9 @@ triangle <- function(x, y, z) {
   ) stop("That's not really a triangle!")
   
   # construct S3 class
-  c(x, y, z) %>% 
-    unique() %>% 
-    length() %>% 
-    switch(c("equilateral", "isosceles"), "isosceles", "scalene") %>% 
-    structure(c(x, y, z), class = .)
+  c(x, y, z) %>%
+    structure(., class = switch(length(unique(.)), 
+                                c("equilateral", "isosceles"), 
+                                "isosceles", "scalene"))
 }
 
