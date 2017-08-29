@@ -15,15 +15,13 @@ allergy <- function(num) {
     "cats"           # 256
   )
   
-  allergies <- character()
-  
   # match places with 1
-  for (i in seq(length(allergy_list))) {
-    if (binary[i] != "")
-      allergies <- append(allergies, allergy_list[i])
+  for (i in seq(length(allergy_list), 1)) {
+    if (binary[i] == "")
+      allergy_list <- allergy_list[-i]
   }
   
-  return(allergies)
+  return(allergy_list)
 }
 
 allergic_to <- function(allergy_object, allergy) {
