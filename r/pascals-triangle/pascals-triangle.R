@@ -15,8 +15,7 @@ pascals_triangle <- function(n) {
     t <- list(1, c(1, 1))
     
     for (i in seq(3, n)) {
-      t <- append(t, list(c(i)))
-      t[[i]][1] <- 1
+      t <- append(t, list(1))
       t[[i]][i] <- 1
       
   # construct row
