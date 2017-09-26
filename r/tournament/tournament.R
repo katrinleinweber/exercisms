@@ -38,19 +38,18 @@ tournament <- function(input) {
   # oust rows with invalid results/cells
   df2 <- df2[df2$Result != "NA",]
   
-  df$Team2 <- NULL
-  df <- rbind(df, df2)
-  
   # calculate values & output data frame
+  df$Team2 <- NULL
   df %>% 
+    rbind(df2) %>% 
     mutate(W = ifelse(Result == "win", 1, 0),
            D = ifelse(Result == "draw", 1, 0),
            L = ifelse(Result == "loss", 1, 0),
+           MP = W + D + L,
            P = 3 * W + D) %>% 
     select(-Result) %>% 
     group_by(Team) %>% 
     summarise_all(sum) %>% 
-    mutate(MP = W + D + L) %>% 
     select(Team, MP, W:P) %>% 
     arrange(desc(P))
 }
