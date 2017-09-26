@@ -18,7 +18,7 @@ tournament <- function(input) {
   for (r in 1:length(input3))
     for (c in 1:length(input3[[r]]))
       df[r, c] <- input3[[r]][c]
-  names(df) <- c("Team1", "Team2", "Result")
+  names(df) <- c("Team", "Team2", "Result")
   
   # separate team pairs, marking invalid result strings
   Result2 <- list()
@@ -39,7 +39,6 @@ tournament <- function(input) {
   df2 <- df2[df2$Result != "NA",]
   
   df$Team2 <- NULL
-  names(df) <- c("Team", "Result")
   df <- rbind(df, df2)
   
   # calculate values & output data frame
