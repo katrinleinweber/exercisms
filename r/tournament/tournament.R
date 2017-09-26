@@ -4,20 +4,20 @@ library(magrittr)
 tournament <- function(input) {
 
   # clean input data (oust empty rows)
-  input1 <- input[lapply(input, nchar) > 0]
+  input <- input[lapply(input, nchar) > 0]
   
   # parse input into data frame
-  input1 %>% 
+  input %>% 
     stringi::stri_extract_all(regex = "[^;]+") ->  # greedy everything except ;
-    input2
+    input
   
   # oust lines with incorrect number of cells
-  input3 <- input2[lapply(input2, length) == 3]
+  input <- input[lapply(input, length) == 3]
   
   df <- data.frame()
-  for (r in 1:length(input3))
-    for (c in 1:length(input3[[r]]))
-      df[r, c] <- input3[[r]][c]
+  for (r in 1:length(input))
+    for (c in 1:length(input[[r]]))
+      df[r, c] <- input[[r]][c]
   names(df) <- c("Team", "Team2", "Result")
   
   # separate team pairs, marking invalid result strings
