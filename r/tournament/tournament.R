@@ -19,11 +19,10 @@ tournament <- function(input) {
   
   # separate team pairs, marking invalid result strings
   df$Result %>% 
-    purrr::map(function(x) case_when(x == "loss" ~ "win",
+    purrr::map_chr(function(x) case_when(x == "loss" ~ "win",
                                      x == "win" ~ "loss",
                                      x == "draw" ~ "draw",
                                      x != "draw" ~ "NA")) %>% 
-    unlist() %>% 
     data.frame(df$Team2, .) -> 
     df2
   names(df2) <- c("Team", "Result")
