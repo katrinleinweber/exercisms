@@ -3,12 +3,9 @@ library(magrittr)
 
 tournament <- function(input) {
 
-  # clean input data (oust empty rows)
-  input <- input[lapply(input, nchar) > 0]
-  
-  # parse input into data frame
-  input %>% 
-    stringi::stri_extract_all(regex = "[^;]+") ->  # greedy everything except ;
+  # clean input data (oust empty rows) & parse
+  input[lapply(input, nchar) > 0] %>%  
+    stringi::stri_split_fixed(";") ->
     input
   
   # oust lines with incorrect number of cells
